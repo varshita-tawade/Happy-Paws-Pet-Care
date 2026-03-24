@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article | Happy Paws Premium</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root { --primary: #FF7033; --dark: #0F1113; --glass: rgba(255, 255, 255, 0.9); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fff; color: #2D2F31; line-height: 1.9; }
+
+        /* Floating Back Button */
+        .nav-top { position: fixed; top: 20px; left: 20px; z-index: 1000; }
+        .btn-circle { width: 50px; height: 50px; background: white; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.1); color: var(--dark); text-decoration: none; transition: 0.3s; }
+        .btn-circle:hover { background: var(--primary); color: white; transform: scale(1.1); }
+
+        /* Immersive Hero Header */
+        .post-hero { height: 70vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: 0.5s; z-index: -1; filter: brightness(0.7); }
+        .hero-content { max-width: 900px; padding: 0 20px; }
+        .category-badge { background: var(--primary); color: white; padding: 5px 15px; border-radius: 50px; font-size: 12px; font-weight: 800; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
+        .post-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; line-height: 1.1; }
+
+        /* Article Body */
+        .article-wrap { max-width: 800px; margin: -100px auto 100px; background: white; border-radius: 40px; padding: 60px; position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.05); }
+        .article-content p { font-size: 1.2rem; margin-bottom: 25px; color: #4A4C4E; }
+        .article-content p::first-letter { float: left; font-size: 4rem; line-height: 1; font-weight: 800; padding-right: 12px; color: var(--primary); font-family: 'Playfair Display', serif; }
+
+        /* Floating Share Bar */
+        .share-bar { position: sticky; top: 100px; left: -100px; width: 50px; display: flex; flex-direction: column; gap: 15px; margin-left: -80px; float: left; }
+        .share-icon { font-size: 20px; color: #ccc; transition: 0.3s; cursor: pointer; }
+        .share-icon:hover { color: var(--primary); }
+
+        @media (max-width: 992px) {
+            .article-wrap { margin-top: 20px; border-radius: 0; padding: 30px 20px; }
+            .share-bar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav-top">
+        <a href="blog.html" class="btn-circle shadow"><i class="fa fa-arrow-left"></i></a>
+    </nav>
+
+    <div class="post-hero">
+        <div id="heroBg" class="hero-bg"></div>
+        <div class="hero-content">
+            <span class="category-badge">Featured Story</span>
+            <h1 id="postTitle" class="post-title">...</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="article-wrap">
+            <div class="share-bar">
+                <i class="fab fa-facebook-f share-icon"></i>
+                <i class="fab fa-twitter share-icon"></i>
+                <i class="fab fa-whatsapp share-icon"></i>
+                <i class="fa fa-link share-icon"></i>
+            </div>
+            
+            <div class="article-content" id="postBody">
+                </div>
+
+            <hr class="my-5">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="fw-800 mb-0">Team Happy Paws</h6>
+                    <small class="text-muted">Editorial Expert</small>
+                </div>
+                <button class="btn btn-dark rounded-pill px-4">Follow Topic</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Database (Same as blog.html)
+        const db = {
+            "1": { title: "The Superfood Secret for Dogs", img: "https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?q=80&w=1200", body: "Blueberries are packed with antioxidants, which can help support your dog's immune system and brain health. Many owners have reported that adding a handful of these berries to daily meals leads to a shinier coat and better digestion. Meanwhile, pumpkin is an amazing source of fiber. This guide covers how to safely introduce these into your dog's diet without causing upset stomachs." },
+            "2": { title: "Decoding Your Cat's Slow Blink", img: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1200", body: "Scientific studies suggest that the 'slow blink' is the feline equivalent of a smile. When a cat looks at you and slowly closes its eyes, it means they feel completely safe and trust you. You can actually bond with your cat by returning the slow blink. This article explores more cat behaviors like tail flicking and ear positioning." },
+            "3": { title: "Puppy Potty Training in 7 Days", img: "https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1200", body: "Consistency is key. To potty train a pup in a week, you need to set a timer for every 2 hours. Always praise them with treats immediately after they go outside. Avoid punishing accidents as it creates fear. Follow our 7-day schedule to make your home accident-free." },
+            "4": { title: "Pet-Friendly Travel Guide 2026", img: "https://images.unsplash.com/photo-1548191265-cc70d3d45ba1?q=80&w=1200", body: "Traveling with pets has never been easier. In 2026, more airlines allow pets in the cabin. We've compiled a list of the top 10 pet-friendly resorts in India where your pet gets their own bed and menu. Don't forget to pack a travel-friendly water bowl and a familiar-smelling blanket!" },
+            "5": { title: "Summer Heatstroke Prevention", img: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1200", body: "Heatstroke is a medical emergency. Signs include heavy panting, bright red gums, and lethargy. Never leave your pet in a parked car, even for a minute. Keep them hydrated and walk them only during the early morning or late evening. If you suspect heatstroke, use cool (not ice-cold) water to lower their temperature immediately." },
+            "6": { title: "Choosing the Right Dog Collar", img: "https://images.unsplash.com/photo-1623387641168-d9803ddd3f35?q=80&w=1200", body: "While collars are great for ID tags, harnesses are often safer for small breeds or dogs that pull. Pulling on a collar can cause throat damage over time. This guide breaks down Martingale collars, Y-harnesses, and standard nylon options based on your dog's activity level." }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        if(id && db[id]) {
+            document.getElementById('postTitle').innerText = db[id].title;
+            document.getElementById('heroBg').style.backgroundImage = `url('${db[id].img}')`;
+            document.getElementById('postBody').innerHTML = `<p>${db[id].body}</p>`;
+        } else {
+            window.location.href = 'blog.html';
+        }
+    </script>
+</body>
+</html>
